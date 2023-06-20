@@ -10,14 +10,6 @@ const FetchUser = require('./Middleware')
 
 const DBstring = process.env.MONGO_URL;
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'https://bancroftautolocksmiths.onrender.com/'
-  ],
-  optionsSuccessStatus: 200
-}));
 
 mongoose.set('strictQuery',true)
 const ConnectToMongo = async () => {
