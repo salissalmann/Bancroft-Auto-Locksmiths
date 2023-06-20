@@ -16,6 +16,7 @@ app.use(cors({
     'http://127.0.0.1:3000',
     'https://bancroftautolocksmiths.onrender.com/',
     'https://bancroftautolocksmiths.onrender.com',
+    'https://ecommerce-application-fiverr-client-6pwq.vercel.app'
   ],
   optionsSuccessStatus: 200
 }));
