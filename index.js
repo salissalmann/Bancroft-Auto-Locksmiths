@@ -94,7 +94,8 @@ app.post("/create-payment-intent", jsonParser, async (req, res) => {
 app.post("/createOrder" ,  FetchUser , jsonParser , async( req, res ) =>{
     try
     {
-        const FindCustomer = await Customer.findOne( { _id : req.user.id })
+      console.log(req.body)
+      const FindCustomer = await Customer.findOne( { _id : req.user.id })
         const NewOrder = new Order({
             UserEmail : FindCustomer.email,
             Email: req.body.Email,
@@ -116,11 +117,11 @@ app.post("/createOrder" ,  FetchUser , jsonParser , async( req, res ) =>{
             Badge: req.body.Badge,
             BadgeBackground : req.body.BadgeBackground,
             Border : req.body.Border,
-            FooterText : req.body.FooterText,
             Vertical : req.body.Vertical,
             ShortHand : req.body.ShortHand,
-            FooterColor: req.body.FooterColor,
             Delivery : req.body.Delivery,
+            FittingKit :  req.body.FittingKit ,     
+            Material :  req.body.Material,      
             Spare : req.body.Spare,
             OrderValue : req.body.OrderValue,
             OrderStatus: "Not Processed",
