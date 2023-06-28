@@ -37,7 +37,7 @@ app.use('/customer', require('./Routes/UserAuth'))
 app.use('/admin', require('./Routes/AdminAuth'))
 app.use('/orders', require('./Routes/OrdersRoutes'))
 app.use('/feedback' , require('./Routes/FeedbackRoutes'))
-
+app.use('/quote', require('./Routes/QuotationRoutes'))
 const Order = require('./Models/Order');
 const Customer = require('./Models/Customer');
 const stripe = require('stripe')(process.env.STRIPE_KEY)
@@ -51,7 +51,7 @@ const stripe = require('stripe')(process.env.STRIPE_KEY)
         })
         const charge = await stripe.charges.create({
             amount: amount * 100,
-            currency: 'eur',
+            currency: 'GBP',
             customer: customer.id,
             receipt_email: token.email,
             description: "A test account"
@@ -71,7 +71,6 @@ app.get("/config" , (req,res) =>{
 })
 app.post("/create-payment-intent", jsonParser, async (req, res) => {
     try {
-      console.log(req.body);
       const amountInCents = Math.round(parseFloat(req.body.Price) * 100);
   
       const paymentIntent = await stripe.paymentIntents.create({
@@ -94,7 +93,6 @@ app.post("/create-payment-intent", jsonParser, async (req, res) => {
 app.post("/createOrder" ,  FetchUser , jsonParser , async( req, res ) =>{
     try
     {
-      console.log(req.body)
       const FindCustomer = await Customer.findOne( { _id : req.user.id })
         const NewOrder = new Order({
             UserEmail : FindCustomer.email,
