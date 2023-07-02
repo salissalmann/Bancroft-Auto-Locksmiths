@@ -17,8 +17,9 @@ app.use(cors({
     'https://bancroftautolocksmiths.onrender.com/',
     'https://bancroftautolocksmiths.onrender.com',
     'https://ecommerce-application-fiverr-client-6pwq.vercel.app',
-    'https://bancroft-auto-locksmiths-client.vercel.app'
-  ],
+    'https://bancroft-auto-locksmiths-client.vercel.app',
+    'https://bancroft-auto-locksmiths-client-a404odng2-salissalmann.vercel.app'  
+],
   optionsSuccessStatus: 200
 }));
 
