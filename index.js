@@ -14,7 +14,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://bancroft-auto-locksmiths-client-2gc41gg41-salissalmann.vercel.app'  
+    'https://bancroft-auto-locksmiths-client-2gc41gg41-salissalmann.vercel.app',
+    'https://bancroft-auto-locksmiths-client-t6v8.vercel.app'  
 ],
   optionsSuccessStatus: 200
 }));
