@@ -14,27 +14,24 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
-    'https://bancroftautolocksmiths.onrender.com/',
-    'https://bancroftautolocksmiths.onrender.com',
-    'https://ecommerce-application-fiverr-client-6pwq.vercel.app',
-    'https://bancroft-auto-locksmiths-client.vercel.app',
-    'https://bancroft-auto-locksmiths-client-a404odng2-salissalmann.vercel.app',
     'https://bancroft-auto-locksmiths-client-2gc41gg41-salissalmann.vercel.app'  
 ],
   optionsSuccessStatus: 200
 }));
 
 mongoose.set('strictQuery',true)
-const ConnectToMongo = async () => {
-  try {
-    await mongoose.connect(DBstring);
-    console.log("Connected to database successfully!");
-  } catch (error) {
-    console.error("Error connecting to database: ", error);
-  }
-};
-ConnectToMongo();
 
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URL);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+}
+
+//Connect to the database before listening
 
 app.use('/customer', require('./Routes/UserAuth'))
 app.use('/admin', require('./Routes/AdminAuth'))
@@ -142,4 +139,8 @@ app.post("/createOrder" ,  FetchUser , jsonParser , async( req, res ) =>{
 
 
 PORT = process.env.PORT || 5001
-app.listen( PORT , ()=> {console.log("LISTENING AT PORT: 3001")} )
+connectDB().then(() => {
+  app.listen(PORT, () => {
+      console.log("listening for requests");
+  })
+})
